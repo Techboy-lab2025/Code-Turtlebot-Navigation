@@ -1,17 +1,25 @@
-# Dockerfile
-FROM ros:foxy
+# Dockerfile for Robot Simulation
 
-# Install necessary dependencies
-RUN apt-get update && apt-get install -y \
-    python3-pip \
-    && rm -rf /var/lib/apt/lists/*
+This project includes a Dockerfile to containerize the ROS2-based robot simulation. The Dockerfile sets up an environment with ROS2 (e.g., Foxy), necessary dependencies, and the robot simulation code, making it easy to deploy and run the simulation in a consistent and reproducible manner.
 
-# Install Python packages
-RUN pip3 install rclpy geometry_msgs fastapi paho-mqtt requests
+## Features
 
-# Copy the application code into the container
-COPY . /app
-WORKDIR /app
+- **Docker Container**: A pre-configured Docker container for running the robot simulation node.
+- **ROS2 Setup**: The Dockerfile installs and configures ROS2 (e.g., Foxy) and required dependencies.
+- **Simulation Ready**: The container runs the `robot_simulation_node.py` to start the robot simulation.
 
-# Set the entrypoint to run the ROS2 node
-ENTRYPOINT ["ros2", "run", "robot_simulation", "robot_simulation_node"]
+## Prerequisites
+
+Before using the Dockerfile, make sure you have the following:
+
+1. Install Docker on your system. Follow the official [Docker installation guide](https://docs.docker.com/get-docker/).
+2. Make sure that your system has enough resources (RAM, CPU) to run the simulation in a Docker container.
+
+## Setup Instructions
+
+### 1. Clone the repository
+
+First, clone the repository with the Dockerfile and the necessary simulation code:
+```bash
+git clone https://github.com/Techboy-lab2025/robot_simulation_node.git
+cd robot_simulation_node
