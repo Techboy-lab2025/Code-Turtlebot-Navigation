@@ -23,3 +23,17 @@ First, clone the repository with the Dockerfile and the necessary simulation cod
 ```bash
 git clone https://github.com/Techboy-lab2025/robot_simulation_node.git
 cd robot_simulation_node
+
+## Example Output
+
+When the container starts, you’ll see:
+
+## Customization
+
+- Modify the `Dockerfile` to install other packages (e.g., sensor drivers).
+- Use Docker volumes to load code without rebuilding the image.
+- Add an `entrypoint.sh` for more control over startup logic.
+
+## License
+
+This project is licensed under the MIT License.
