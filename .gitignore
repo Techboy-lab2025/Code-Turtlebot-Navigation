@@ -1,15 +1,17 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*.so
-*.ipynb_checkpoints
+# Dockerfile
+FROM ros:foxy
 
-# ROS build files
-build/
-devel/
-log/
+# Install necessary dependencies
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
 
-# Data and other artifacts
-*.bag
-*.csv
-*.log
+# Install Python packages
+RUN pip3 install rclpy geometry_msgs fastapi paho-mqtt requests
+
+# Copy the application code into the container
+COPY . /app
+WORKDIR /app
+
+# Set the entrypoint to run the ROS2 node
+ENTRYPOINT ["ros2", "run", "robot_simulation", "robot_simulation_node"]
